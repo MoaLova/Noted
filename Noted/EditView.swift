@@ -30,20 +30,24 @@ struct EditView: View {
                 
                 List{
                     ForEach(viewModel.notes){ entity in
-                        NavigationLink{
-                            Text(entity.headline ?? "no headline")
-                           
-                        }label: {
-                            Text(entity.headline ?? "no headline")
-                           
+                        
+                        VStack{
+                          
+                          NavigationLink{
+                              EditNotes(entitys: entity, viewModel: viewModel)
+                                Text(entity.headline ?? "no headline")
+                                
+                            }label: {
+                                Text(entity.headline ?? "no headline")
+                                
+                            }
                         }
                         
                     } .onDelete( perform: { indexSet in
                         viewModel.deleteNotes(indexSet: indexSet)
                         
-                    }
-                                 )
-            }
+                    })
+                }.listStyle(.plain)
             }.navigationTitle("Edit")
     
     }

@@ -15,6 +15,7 @@
 		2F79964F2B9924B300279F24 /* NotedModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F79964D2B9924B300279F24 /* NotedModel.xcdatamodeld */; };
 		2F7996512B99263800279F24 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7996502B99263800279F24 /* Persistence.swift */; };
 		2FDDEA332B9A4672005557CD /* NotedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDDEA322B9A4672005557CD /* NotedViewModel.swift */; };
+		2FDDEA352B9A6346005557CD /* EditNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDDEA342B9A6346005557CD /* EditNotes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2F79964E2B9924B300279F24 /* NotedModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotedModel.xcdatamodel; sourceTree = "<group>"; };
 		2F7996502B99263800279F24 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2FDDEA322B9A4672005557CD /* NotedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotedViewModel.swift; sourceTree = "<group>"; };
+		2FDDEA342B9A6346005557CD /* EditNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				2F79964D2B9924B300279F24 /* NotedModel.xcdatamodeld */,
 				2F7996502B99263800279F24 /* Persistence.swift */,
 				2FDDEA322B9A4672005557CD /* NotedViewModel.swift */,
+				2FDDEA342B9A6346005557CD /* EditNotes.swift */,
 			);
 			path = Noted;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				2F79964F2B9924B300279F24 /* NotedModel.xcdatamodeld in Sources */,
 				2F79964C2B991D3400279F24 /* EditView.swift in Sources */,
 				2F7996512B99263800279F24 /* Persistence.swift in Sources */,
+				2FDDEA352B9A6346005557CD /* EditNotes.swift in Sources */,
 				2FDDEA332B9A4672005557CD /* NotedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

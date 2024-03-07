@@ -32,6 +32,16 @@ class NotedViewModel: ObservableObject{
         saveData()
         
     }
+    
+    func updateNotes(entity: Noted, newHeadline: String, newText: String){
+        
+        let newNotes = Noted(context: container.viewContext)
+        entity.headline = newHeadline
+        entity.text = newText
+        
+        saveData()
+    }
+    
     func deleteNotes(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = notes[index]
