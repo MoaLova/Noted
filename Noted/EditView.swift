@@ -25,10 +25,7 @@ struct EditView: View {
                 if newText.isEmpty {
                     Text("Write your noted underneath: ")
                         .foregroundColor(.gray)
-                       
-                       
                 }
-               
             }
 
             Spacer()
