@@ -14,9 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: EditView(viewModel: viewModel)) {
-                    Text("Add")
-                }
+                
                 List {
                     ForEach(viewModel.notes) { entity in
                         VStack {
@@ -30,6 +28,9 @@ struct ContentView: View {
                     }
                 }
                 .listStyle(.plain)
+                NavigationLink(destination: EditView(viewModel: viewModel)) {
+                    Text("Add")
+                }
             }
             .navigationTitle("Notes")
         }

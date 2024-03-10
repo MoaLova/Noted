@@ -19,12 +19,20 @@ struct EditNotes: View {
             TextField("headline", text: $newHeadline)
                 .padding()
 
-            TextEditor(text: $newText) // Use TextEditor for multiline text input
-                .padding()
-                .frame(minHeight: 100) // Set a minimum height for multiline input
+            ZStack(alignment: .topLeading) {
+                            if newText.isEmpty {
+                                Text("text")
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 4)
+                                    .padding(.top, 8)
+                                    .opacity(0.5)
+                            }
+                            TextEditor(text: $newText)
+                                .padding()
+                                .frame(minHeight: 100)
+                        }
 
-            Spacer() // Spacer to push the following button to the bottom
-
+                        Spacer()
             Button("Save Notes") {
                 if newHeadline.isEmpty && newText.isEmpty {
                     return

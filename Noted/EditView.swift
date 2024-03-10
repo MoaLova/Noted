@@ -10,19 +10,28 @@ import SwiftUI
 struct EditView: View {
     @ObservedObject var viewModel: NotedViewModel
 
-    @State private var headline: String = ""
-    @State private var text: String = ""
+    @State private var newHeadline: String = ""
+    @State private var newText: String = ""
+    @State private var isEditing = false
 
     var body: some View {
         VStack {
-            TextField("Headline", text: $headline)
+            TextField("Headline", text: $newHeadline)
                 .padding()
 
-            TextEditor(text: $text) // Use TextEditor for multiline text input
-                .padding()
-                .frame(minHeight: 100) // Set a minimum height for multiline input
+            ZStack(alignment: .centerFirstTextBaseline) {
+                TextEditor(text: $newText)
+                
+                if newText.isEmpty {
+                    Text("Write your noted underneath: ")
+                        .foregroundColor(.gray)
+                       
+                       
+                }
+               
+            }
 
-            Spacer() // Spacer to push the following button to the bottom
+            Spacer()
 
             Button("Save Notes") {
                 addNotes()
@@ -32,17 +41,16 @@ struct EditView: View {
             .foregroundColor(.white)
             .cornerRadius(20)
         }
-        .navigationTitle("Edit")
     }
 
     func addNotes() {
-        print("Before saving: Headline - \(headline), Text - \(text)")
-        if headline.isEmpty || text.isEmpty {
+        print("Before saving: Headline - \(newHeadline), Text - \(newText)")
+        if newHeadline.isEmpty || newText.isEmpty {
             return
         }
-        viewModel.addNotes(headline: headline, text: text)
-        headline = ""
-        text = ""
+        viewModel.addNotes(headline: newHeadline, text: newText)
+        newHeadline = ""
+        newText = ""
     }
 }
 
