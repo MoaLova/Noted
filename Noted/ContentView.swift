@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CoreData
-
 import SwiftUI
 import CoreData
 
@@ -17,20 +16,25 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-              
-                List {
-                    ForEach(viewModel.notes) { entity in
-                        VStack {
+
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 0) {
+                        ForEach(viewModel.notes) { entity in
                             NavigationLink(destination: EditNotes(entity: entity, viewModel: viewModel)) {
-                                Text(entity.headline ?? "no headline")
+                                Rectangle()
+                                    .fill(Color.blue)
+                                    .frame(height: 120)
+                                    .overlay(
+                                        Text(entity.headline ?? "no headline")
+                                            .foregroundColor(.white)
+                                    )
+                                    .cornerRadius(15)
+                                    .padding()
                             }
                         }
                     }
-                    .onDelete { indexSet in
-                        viewModel.deleteNotes(indexSet: indexSet)
-                    }
+                    .padding()
                 }
-                .listStyle(.inset)
 
                 NavigationLink(destination: EditView(viewModel: viewModel)) {
                     Text("Add")
