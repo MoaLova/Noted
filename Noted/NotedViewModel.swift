@@ -25,20 +25,22 @@ class NotedViewModel: ObservableObject{
             print("error fetching: \(error)")
         }
     }
-    func addNotes(headline: String, text: String){
+    func addNotes(headline: String, text: String) {
         let newNote = Noted(context: container.viewContext)
         newNote.headline = headline
         newNote.text = text
-        saveData()
         
+        saveData()
     }
+
+
     
     func updateNotes(entity: Noted, newHeadline: String, newText: String) {
-           entity.headline = newHeadline
-           entity.text = newText
-           saveData()
-       }
-    
+        // Ensure you are using the provided values directly
+        entity.headline = newHeadline
+        entity.text = newText
+        // Update your notes array or perform necessary actions
+    }
     func deleteNotes(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = notes[index]

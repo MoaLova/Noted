@@ -15,11 +15,16 @@ struct EditView: View {
 
     var body: some View {
         VStack {
-            TextField("headline", text: $headline)
+            TextField("Headline", text: $headline)
                 .padding()
-            TextField("text", text: $text)
+
+            TextEditor(text: $text) // Use TextEditor for multiline text input
                 .padding()
-            Button("save notes") {
+                .frame(minHeight: 100) // Set a minimum height for multiline input
+
+            Spacer() // Spacer to push the following button to the bottom
+
+            Button("Save Notes") {
                 addNotes()
             }
             .padding()
@@ -31,14 +36,23 @@ struct EditView: View {
     }
 
     func addNotes() {
-        if headline.isEmpty {
-            return
-        }
-        if text.isEmpty {
+        print("Before saving: Headline - \(headline), Text - \(text)")
+        if headline.isEmpty || text.isEmpty {
             return
         }
         viewModel.addNotes(headline: headline, text: text)
         headline = ""
         text = ""
+    }
+}
+
+
+struct EditView_Previews: PreviewProvider {
+    static var previews: some View {
+        // Create a sample NotedViewModel for preview
+        let viewModel = NotedViewModel()
+
+        // Assuming you want to preview EditView with an empty viewModel
+        EditView(viewModel: viewModel)
     }
 }

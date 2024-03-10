@@ -18,11 +18,15 @@ struct EditNotes: View {
         VStack {
             TextField("headline", text: $newHeadline)
                 .padding()
-            TextField("text", text: $newText)
+
+            TextEditor(text: $newText) // Use TextEditor for multiline text input
                 .padding()
-            Button("save notes") {
+                .frame(minHeight: 100) // Set a minimum height for multiline input
+
+            Spacer() // Spacer to push the following button to the bottom
+
+            Button("Save Notes") {
                 if newHeadline.isEmpty && newText.isEmpty {
-                    // Handle case when both fields are empty (optional)
                     return
                 }
                 viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
