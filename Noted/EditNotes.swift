@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct EditNotes: View {
     @ObservedObject var entity: Noted
     @ObservedObject var viewModel: NotedViewModel
@@ -20,29 +19,42 @@ struct EditNotes: View {
                 .padding()
 
             ZStack(alignment: .topLeading) {
-                            if newText.isEmpty {
-                                Text("text")
-                                    .foregroundColor(.black)
-                                    .padding(.leading, 4)
-                                    .padding(.top, 8)
-                                    .opacity(0.5)
-                            }
-                            TextEditor(text: $newText)
-                                .padding()
-                                .frame(minHeight: 100)
-                        }
-
-                        Spacer()
-            Button("Save Notes") {
-                if newHeadline.isEmpty && newText.isEmpty {
-                    return
+                if newText.isEmpty {
+                    Text("text")
+                        .foregroundColor(.black)
+                        .padding(.leading, 4)
+                        .padding(.top, 8)
+                        .opacity(0.5)
                 }
-                viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
+                TextEditor(text: $newText)
+                    .padding()
+                    .frame(minHeight: 100)
             }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(20)
+
+            Spacer()
+
+            HStack {
+                Button("Delete") {
+                    viewModel.deleteNotes(entity: entity)
+                }
+                .padding()
+                .background(Color.red)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+
+                Spacer()
+
+                Button("Save Notes") {
+                    if newHeadline.isEmpty && newText.isEmpty {
+                        return
+                    }
+                    viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+            }
         }
         .navigationTitle("Edit")
         .onAppear {

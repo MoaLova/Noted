@@ -9,9 +9,8 @@ import Foundation
 import CoreData
 
 class NotedViewModel: ObservableObject{
-    
     @Published var notes: [Noted] = []
-    var container = Persistence.shared.container
+        var container = Persistence.shared.container
     
     init() {
         self.fetchNotes()
@@ -40,13 +39,18 @@ class NotedViewModel: ObservableObject{
         entity.text = newText
         saveData()
     }
-    
-    func deleteNotes(indexSet: IndexSet){
-        guard let index = indexSet.first else {return}
-        let entity = notes[index]
-        container.viewContext.delete(entity)
-        saveData()
-    }
+    func deleteNotes(entity: Noted) {
+           container.viewContext.delete(entity)
+
+           do {
+               try container.viewContext.save()
+           } catch {
+               print("Error deleting entity: \(error)")
+           }
+           
+           fetchNotes()
+       }
+
     
     func saveData(){
         do{
