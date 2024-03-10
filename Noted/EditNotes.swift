@@ -8,35 +8,34 @@
 import SwiftUI
 
 struct EditNotes: View {
-    var entitys: Noted
-    @ObservedObject var viewModel : NotedViewModel
-    
-    @State var headline: String = ""
-    @State var text: String = ""
-    
+    @ObservedObject var entity: Noted
+    @ObservedObject var viewModel: NotedViewModel
+
+    @State private var newHeadline: String = ""
+    @State private var newText: String = ""
+
     var body: some View {
-        TextField("new name", text: $headline)
-            .padding()
-        TextField(" new text", text: $text)
-            .padding()
-        Button("update notes"){
-            if headline.isEmpty{
-                return
+        VStack {
+            TextField("headline", text: $newHeadline)
+                .padding()
+            TextField("text", text: $newText)
+                .padding()
+            Button("save notes") {
+                if newHeadline.isEmpty && newText.isEmpty {
+                    // Handle case when both fields are empty (optional)
+                    return
+                }
+                viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
             }
-            if text.isEmpty{
-                return
-            }
-            viewModel.addNotes(headline: headline, text: text)
-            headline = ""
-            text = ""
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(20)
         }
-    .padding()
-         .background(.blue)
-         .foregroundColor(.white)
-         .cornerRadius(20)
-         
-        Text(entitys.headline ?? "no headline")
-        Text(entitys.text ?? "no text")
+        .navigationTitle("Edit")
+        .onAppear {
+            newHeadline = entity.headline ?? ""
+            newText = entity.text ?? ""
+        }
     }
 }
-

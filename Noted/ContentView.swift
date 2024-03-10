@@ -8,21 +8,30 @@
 import SwiftUI
 import CoreData
 
-import SwiftUI
-import CoreData
-
-
 struct ContentView: View {
-    var body: some View{
-        NavigationView{
-            VStack{
-                NavigationLink(destination: EditView()) {
+    @StateObject var viewModel = NotedViewModel()
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                NavigationLink(destination: EditView(viewModel: viewModel)) {
                     Text("Add")
                 }
-                
+                List {
+                    ForEach(viewModel.notes) { entity in
+                        VStack {
+                            NavigationLink(destination: EditNotes(entity: entity, viewModel: viewModel)) {
+                                Text(entity.headline ?? "no headline")
+                            }
+                        }
+                    }
+                    .onDelete { indexSet in
+                        viewModel.deleteNotes(indexSet: indexSet)
+                    }
+                }
+                .listStyle(.plain)
             }
             .navigationTitle("Notes")
-            
         }
     }
 }
@@ -30,4 +39,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-

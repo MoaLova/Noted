@@ -7,63 +7,38 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct EditView: View {
-  @StateObject var viewModel = NotedViewModel()
-    
-  @State var headline: String = ""
-  @State  var text: String = ""
+    @ObservedObject var viewModel: NotedViewModel
+
+    @State private var headline: String = ""
+    @State private var text: String = ""
+
     var body: some View {
-       
-            VStack{
-               TextField("headline", text: $headline)
-                    .padding()
-                TextField("text", text: $text)
-                    .padding()
-                Button("save notes"){
-                    addNotes()
-                }.padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .cornerRadius(20)
-                
-                List{
-                    ForEach(viewModel.notes){ entity in
-                        
-                        VStack{
-                          
-                          NavigationLink{
-                              EditNotes(entitys: entity, viewModel: viewModel)
-                                Text(entity.headline ?? "no headline")
-                                
-                            }label: {
-                                Text(entity.headline ?? "no headline")
-                                
-                            }
-                        }
-                        
-                    } .onDelete( perform: { indexSet in
-                        viewModel.deleteNotes(indexSet: indexSet)
-                        
-                    })
-                }.listStyle(.plain)
-            }.navigationTitle("Edit")
-    
+        VStack {
+            TextField("headline", text: $headline)
+                .padding()
+            TextField("text", text: $text)
+                .padding()
+            Button("save notes") {
+                addNotes()
+            }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+        }
+        .navigationTitle("Edit")
     }
-    func addNotes(){
-        if headline.isEmpty{
+
+    func addNotes() {
+        if headline.isEmpty {
             return
         }
-        if text.isEmpty{
+        if text.isEmpty {
             return
         }
         viewModel.addNotes(headline: headline, text: text)
         headline = ""
         text = ""
     }
-}
-
-#Preview {
-    EditView()
 }
