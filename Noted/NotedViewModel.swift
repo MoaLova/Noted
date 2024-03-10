@@ -36,11 +36,11 @@ class NotedViewModel: ObservableObject{
 
     
     func updateNotes(entity: Noted, newHeadline: String, newText: String) {
-        // Ensure you are using the provided values directly
         entity.headline = newHeadline
         entity.text = newText
-        // Update your notes array or perform necessary actions
+        saveData()
     }
+    
     func deleteNotes(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = notes[index]
