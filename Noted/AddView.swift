@@ -16,30 +16,39 @@ struct EditView: View {
 
     var body: some View {
         VStack {
+            Spacer()
             TextField("Headline", text: $newHeadline)
-                .padding()
-
+                .multilineTextAlignment(.center)
+                .padding(20)
+            Spacer()
+            
+            
             ZStack(alignment: .centerFirstTextBaseline) {
+                
                 TextEditor(text: $newText)
                 
                 if newText.isEmpty {
                     Text("Write your noted underneath: ")
                         .foregroundColor(.gray)
+                    Spacer()
                 }
             }
-
+            
             Spacer()
-
-            Button("Save Notes") {
+            Button(action: {
                 addNotes()
-            }
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(20)
-        }
-    }
+            }) {
+                Image(systemName: "square.and.arrow.down")
+                       .font(.system(size: 25)) // Adjust the font size as needed
+                       .padding(15)
+                       .background(Color.blue)
+                       .foregroundColor(.white)
+                       .cornerRadius(20)
+                       .position(CGPoint(x: 300.0, y: 290.0))
+            }}}
 
+    
+    
     func addNotes() {
         print("Before saving: Headline - \(newHeadline), Text - \(newText)")
         if newHeadline.isEmpty || newText.isEmpty {

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+
+
 struct EditNotes: View {
     @ObservedObject var entity: Noted
     @ObservedObject var viewModel: NotedViewModel
@@ -34,26 +36,30 @@ struct EditNotes: View {
             Spacer()
 
             HStack {
-                Button("Delete") {
+                Button(action: {
                     viewModel.deleteNotes(entity: entity)
+                }) {
+                    Image(systemName: "trash.fill")
+                        .padding()
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
-                .padding()
-                .background(Color.red)
-                .foregroundColor(.white)
-                .cornerRadius(20)
 
                 Spacer()
 
-                Button("Save Notes") {
+                Button(action: {
                     if newHeadline.isEmpty && newText.isEmpty {
                         return
                     }
                     viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
+                }) {
+                    Image(systemName: "square.and.arrow.down.fill")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(20)
             }
         }
         .navigationTitle("Edit")
