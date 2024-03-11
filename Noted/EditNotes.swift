@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct EditNotes: View {
     @ObservedObject var entity: Noted
     @ObservedObject var viewModel: NotedViewModel
@@ -35,7 +34,7 @@ struct EditNotes: View {
 
             Spacer()
 
-            HStack {
+            HStack(spacing: 10) {
                 Button(action: {
                     viewModel.deleteNotes(entity: entity)
                 }) {
@@ -45,8 +44,6 @@ struct EditNotes: View {
                         .foregroundColor(.white)
                         .cornerRadius(20)
                 }
-
-                Spacer()
 
                 Button(action: {
                     if newHeadline.isEmpty && newText.isEmpty {
