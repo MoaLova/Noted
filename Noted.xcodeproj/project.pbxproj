@@ -62,16 +62,19 @@
 		2F79963B2B991A9300279F24 /* Noted */ = {
 			isa = PBXGroup;
 			children = (
-				2F79963C2B991A9300279F24 /* NotedApp.swift */,
+				2FC3480F2BA4AF28006DDBB2 /* View */,
 				2F79963E2B991A9300279F24 /* ContentView.swift */,
+				2F79964B2B991D3400279F24 /* AddView.swift */,
+				2FDDEA342B9A6346005557CD /* EditNotes.swift */,
+				2FC3480E2BA4AEB0006DDBB2 /* ViewModel */,
+				2FDDEA322B9A4672005557CD /* NotedViewModel.swift */,
+				2FC3480C2BA4AE84006DDBB2 /* Model */,
+				2F7996502B99263800279F24 /* Persistence.swift */,
+				2F79963C2B991A9300279F24 /* NotedApp.swift */,
 				2F7996402B991A9500279F24 /* Assets.xcassets */,
 				2F7996422B991A9500279F24 /* Noted.entitlements */,
 				2F7996432B991A9500279F24 /* Preview Content */,
-				2F79964B2B991D3400279F24 /* AddView.swift */,
 				2F79964D2B9924B300279F24 /* NotedModel.xcdatamodeld */,
-				2F7996502B99263800279F24 /* Persistence.swift */,
-				2FDDEA322B9A4672005557CD /* NotedViewModel.swift */,
-				2FDDEA342B9A6346005557CD /* EditNotes.swift */,
 			);
 			path = Noted;
 			sourceTree = "<group>";
@@ -82,6 +85,27 @@
 				2F7996442B991A9500279F24 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2FC3480C2BA4AE84006DDBB2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2FC3480E2BA4AEB0006DDBB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2FC3480F2BA4AF28006DDBB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

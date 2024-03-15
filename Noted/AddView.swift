@@ -17,37 +17,45 @@ struct EditView: View {
     var body: some View {
         VStack {
             Spacer()
+            //Headline ipu
             TextField("Headline", text: $newHeadline)
                 .multilineTextAlignment(.center)
                 .padding(20)
+                .foregroundColor(.black.opacity(1))
+                .font(Font.custom("Cochin", size: 20))
             Spacer()
             
-            
+            //Writing input
             ZStack(alignment: .centerFirstTextBaseline) {
-                
                 TextEditor(text: $newText)
-                
+                    .multilineTextAlignment(.center)
+                    .font(Font.custom("Cochin", size: 16))
                 if newText.isEmpty {
                     Text("Write your noted underneath: ")
-                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black.opacity(0.7))
+                        .font(Font.custom("Cochin", size: 20))
                     Spacer()
                 }
             }
             
+            
+            //Button to add the notes
             Spacer()
             Button(action: {
                 addNotes()
             }) {
                 Image(systemName: "square.and.arrow.down")
-                       .font(.system(size: 25)) // Adjust the font size as needed
-                       .padding(15)
-                       .background(Color.blue)
-                       .foregroundColor(.white)
-                       .cornerRadius(20)
-                       .position(CGPoint(x: 300.0, y: 290.0))
-            }}}
-
-    
+                    .font(.system(size: 25)) 
+                    .padding(15)
+                    .background(Color.pink.opacity(0.2))
+                    .foregroundColor(.black.opacity(0.6))
+                    .cornerRadius(20)
+                    .position(CGPoint(x: 230.0, y: 270.0))
+            }
+        }
+    }
+//Function to add notes
     
     func addNotes() {
         print("Before saving: Headline - \(newHeadline), Text - \(newText)")
@@ -63,10 +71,8 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        // Create a sample NotedViewModel for preview
         let viewModel = NotedViewModel()
-
-        // Assuming you want to preview EditView with an empty viewModel
+        
         EditView(viewModel: viewModel)
     }
 }

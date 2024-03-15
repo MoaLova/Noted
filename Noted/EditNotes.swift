@@ -16,35 +16,45 @@ struct EditNotes: View {
 
     var body: some View {
         VStack {
-            TextField("headline", text: $newHeadline)
-                .padding()
-
-            ZStack(alignment: .topLeading) {
-                if newText.isEmpty {
-                    Text("text")
-                        .foregroundColor(.black)
-                        .padding(.leading, 4)
-                        .padding(.top, 8)
-                        .opacity(0.5)
-                }
+            //Headline input
+            TextField("Headline", text: $newHeadline)
+                .multilineTextAlignment(.center)
+                .padding(20)
+                .foregroundColor(.black.opacity(1))
+                .font(Font.custom("Cochin", size: 16))
+            Spacer()
+            
+            //Writing input
+            ZStack(alignment: .centerFirstTextBaseline) {
                 TextEditor(text: $newText)
-                    .padding()
-                    .frame(minHeight: 100)
+                    .multilineTextAlignment(.center)
+                    .font(Font.custom("Cochin", size: 16))
+                if newText.isEmpty {
+                    Text("Write your noted underneath: ")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black.opacity(0.7))
+                        .font(Font.custom("Cochin", size: 16))
+                    Spacer()
+                }
             }
+            
 
             Spacer()
 
+            //Delete your notes button
             HStack(spacing: 10) {
                 Button(action: {
                     viewModel.deleteNotes(entity: entity)
                 }) {
                     Image(systemName: "trash.fill")
+                        .font(.system(size: 25))
                         .padding()
-                        .background(Color.red)
-                        .foregroundColor(.white)
+                        .background(Color.pink.opacity(0.2))
+                        .foregroundColor(.black.opacity(0.6))
                         .cornerRadius(20)
                 }
 
+                //Save your edited notes button
                 Button(action: {
                     if newHeadline.isEmpty && newText.isEmpty {
                         return
@@ -52,9 +62,10 @@ struct EditNotes: View {
                     viewModel.updateNotes(entity: entity, newHeadline: newHeadline, newText: newText)
                 }) {
                     Image(systemName: "square.and.arrow.down.fill")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
+                        .font(.system(size: 25))
+                        .padding(15)
+                        .background(Color.pink.opacity(0.2))
+                        .foregroundColor(.black.opacity(0.6))
                         .cornerRadius(20)
                 }
             }

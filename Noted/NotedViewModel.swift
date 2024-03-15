@@ -10,11 +10,14 @@ import CoreData
 
 class NotedViewModel: ObservableObject{
     @Published var notes: [Noted] = []
+    // Core Data container reference
         var container = Persistence.shared.container
     
     init() {
         self.fetchNotes()
     }
+    
+    //function to fetch the notes by coredata
     func fetchNotes(){
         let request = NSFetchRequest<Noted>(entityName: "Noted")
          
@@ -24,6 +27,9 @@ class NotedViewModel: ObservableObject{
             print("error fetching: \(error)")
         }
     }
+    
+    
+    //function to add the notes by coredata
     func addNotes(headline: String, text: String) {
         let newNote = Noted(context: container.viewContext)
         newNote.headline = headline
@@ -34,11 +40,15 @@ class NotedViewModel: ObservableObject{
 
 
     
+    //function to update the notes by coredata
     func updateNotes(entity: Noted, newHeadline: String, newText: String) {
         entity.headline = newHeadline
         entity.text = newText
         saveData()
     }
+    
+    
+    //function to delete the notes by coredata
     func deleteNotes(entity: Noted) {
            container.viewContext.delete(entity)
 
@@ -52,6 +62,7 @@ class NotedViewModel: ObservableObject{
        }
 
     
+    //function to save the notes by coredata 
     func saveData(){
         do{
             try container.viewContext.save()

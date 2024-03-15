@@ -9,11 +9,17 @@ import Foundation
 import CoreData
 
 struct Persistence{
+    // Singleton instance of Persistence
     static let shared = Persistence()
     
+    // Core Data container
     let container: NSPersistentContainer
+    
+    // Initializer to set up the Core Data stack
     init() {
         container = NSPersistentContainer(name: "NotedModel")
+        
+        // Load the persistent stores asynchronously
         
         container.loadPersistentStores { (description, error) in
             
